@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Supply Chain Disruption Response (OpenEnv)
 
 A real-world-inspired OpenEnv environment for supply chain logistics and disruption response. The agent acts as a Lead Logistics Provider managing a supplier network, customer orders, and alternate sourcing choices under unpredictable market shocks.
@@ -112,3 +113,6 @@ print('easy', EasyTask.evaluate(env, action))
 print('medium', MediumTask.evaluate(env, action))
 print('hard', HardTask.evaluate(env))
 ```
+=======
+# SuppleChain
+>>>>>>> 55e89601e7cad36de4f68a1cee21aee6e0e51849
