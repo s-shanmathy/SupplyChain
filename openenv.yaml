@@ -1,0 +1,66 @@
+name: supply-chain-disruption-response
+version: "0.1.0"
+description: "OpenEnv environment: Supply Chain Disruption Response for supplier network resilience and disruption management."
+maintainers:
+  - name: "Lead Logistics Provider AI"
+    email: "noreply@example.com"
+license: MIT
+entry_point: engine:SupplyChainEnv
+simulation:
+  type: gym
+  observation_space:
+    supplier_network:
+      - supplier_id: str
+        products: map[str, int]
+        capacity: int
+        lead_time: int
+        unit_cost: float
+        reliability: float
+    inventory_levels:
+      Widget: int
+      Gadget: int
+    pending_orders:
+      - order_id: str
+        product: str
+        quantity: int
+        deadline: int
+        penalty_per_day: float
+        customer_id: str
+        status: [PENDING, ASSIGNED, DELIVERED, LATE, CANCELLED]
+        assigned_supplier: str
+        expected_delivery: int
+        notified: bool
+    disruption_event:
+      event_type: [SUPPLIER_DOWN, PORT_BLOCKED, FACTORY_FLOODED, SUPPLIER_BANKRUPTCY, FUEL_SPIKE]
+      affected_entity: str
+      severity: str
+      recovery_days: int
+      active: bool
+    alternative_suppliers:
+      - supplier_id: str
+        product: str
+        lead_time: int
+        unit_cost: float
+        reliability: float
+        available_qty: int
+    budget_remaining: float
+    feedback: str
+  action_space:
+    action_type:
+      - reroute_order
+      - negotiate
+      - split_order
+      - notify_customer
+      - expedite
+      - cancel_order
+      - query
+    target_id: str
+    value: float
+    parameters: map[str, str]
+config:
+  max_steps: 30
+requirements:
+  - python>=3.10
+  - pydantic>=1.10
+  - fastapi>=0.100
+  - uvicorn>=0.23
